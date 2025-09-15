@@ -7,11 +7,15 @@ import numpy as np
 import os
 import traceback
 from get_metadata import get_metadata, process_metadata_final
-
-gt_df = pd.read_csv("enter the path to your gt csv file here")
-
+import argparse
 import ast
+# Setup argument parser
+parser = argparse.ArgumentParser(description='Process ground truth CSV file path.')
+parser.add_argument('--gt_path', type=str, required=True, help='Path to the ground truth CSV file')
+args = parser.parse_args()
 
+# Load gt_df using the argument
+gt_df = pd.read_csv(args.gt_path)
 def extract_comment(x):
     try:
         d = ast.literal_eval(x)  # Safely parse string to dict
