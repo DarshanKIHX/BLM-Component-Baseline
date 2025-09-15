@@ -164,4 +164,4 @@ relevant_combined_df.loc[relevant_combined_df['GT_Patient_Name']=='None', 'match
 
 
 relevant_combined_df['match'].value_counts()
-
+combined_df.to_csv('Patient_Name_baseline_results.csv', index=False)
