@@ -12,9 +12,15 @@ from get_metadata import clean_value_text
 from get_metadata import process_metadata_final
 from get_metadata import get_metadata
 import ast
+import argparse
 
-gt_df=pd.read_csv('enter path to gt file here')
+# Setup argument parser
+parser = argparse.ArgumentParser(description='Process ground truth CSV file path.')
+parser.add_argument('--gt_path', type=str, required=True, help='Path to the ground truth CSV file')
+args = parser.parse_args()
 
+# Load gt_df using the argument
+gt_df = pd.read_csv(args.gt_path)
 gt_df= gt_df[gt_df['status']=='completed']
 
 def extract_comment(x):
