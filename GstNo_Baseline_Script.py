@@ -96,7 +96,7 @@ def extract_comment(x):
 
 gt_df['comment_value'] = gt_df['metadata'].apply(extract_comment)
 
-gt_df= gt_df[gt_df['status']=='completed']
+gt_df= gt_df[gt_df['status']=='completed'
 
 gn_gt= gt_df[['document_id', 'page_id', 'value_text', 'claim_id','comment_value','status']]
 
@@ -128,8 +128,6 @@ combined_df['clext'] = combined_df['clext'].replace(['None','NA','', None,'nan']
 
 combined_df['match'] = combined_df.apply(lambda row: row['GT_Gst_No'] == row['clext'], axis = 1)
 
-combined_df
-
 def evaluate_Rno_match(gt, pred):
     """
     Evaluate match between ground truth and predicted gender.
@@ -156,4 +154,4 @@ combined_df["Rno_match"] = combined_df.apply(
     lambda row: evaluate_Rno_match(row["GT_Gst_No"], row["clext"]),
     axis=1
 )
-
+combined_df.to_csv('GST_baseline_results.csv', index=False)
