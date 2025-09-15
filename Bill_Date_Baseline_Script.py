@@ -10,8 +10,15 @@ import os
 import traceback
 from get_metadata import convert_to_standard_format
 import ast
+import argparse
 
-gt_df = pd.read_csv("#Path to GT file")
+# Setup argument parser
+parser = argparse.ArgumentParser(description='Process ground truth CSV file path.')
+parser.add_argument('--gt_path', type=str, required=True, help='Path to the ground truth CSV file')
+args = parser.parse_args()
+
+# Load gt_df using the argument
+gt_df = pd.read_csv(args.gt_path)
 
 rel_gt_df = gt_df[['value_text', 'claim_id', 'document_id', 'page_id', 'comment_value']]
 #enter the blm output directory
